@@ -8,6 +8,9 @@
   "servers" : [
     {
       "url" : "http://localhost:1160/api/pawpalace"
+    },
+    {
+      "url" : "http://localhost:1161/api/pawpalace"
     }
   ],
   "paths": {
@@ -142,6 +145,38 @@
           },
           "404": {
             "description": "Pet not found"
+          }
+        }
+      }
+    },
+    "/pet/register-and-vaccinate": {
+      "post": {
+        "summary": "Register a new pet and schedule vaccination",
+        "operationId": "RegisterAndVaccinatePet",
+        "tags": ["Pet"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./PetVaccinationRegistration.json#/components/schemas/PetVaccinationRegistration"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Pet registered and vaccination scheduled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./PetVaccinationRegistration.json#/components/schemas/PetVaccinationRegistration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
           }
         }
       }

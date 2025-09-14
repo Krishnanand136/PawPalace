@@ -12,4 +12,8 @@ public class VaccinationRecordDTO {
     private VaccinationType vaccinationType; // e.g., Rabies
     private LocalDate appointmentDate;
     private String status;
+
+    public void setPetId(String petId) {
+        this.petId = petId;
+    }
 }

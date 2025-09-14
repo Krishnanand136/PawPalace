@@ -30,4 +30,7 @@ public class Pet implements Serializable {
 
     private Integer age;
 
+    public String getPetId() {
+        return petId;
+    }
 }

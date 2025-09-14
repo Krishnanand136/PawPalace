@@ -1,0 +1,29 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API Title",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.server.test/v1"
+    }
+  ],
+  "paths": {
+  },
+  "components": {
+    "schemas": {
+      "PetVaccinationRegistration": {
+        "type": "object",
+        "properties": {
+          "pet": {
+            "$ref": "./Pet.json#/components/schemas/Pet"
+          },
+          "vaccinationRecord": {
+            "$ref": "./VaccinationRecord.json#/components/schemas/VaccinationRecord"
+          }
+        }
+      }
+    }
+  }
+}

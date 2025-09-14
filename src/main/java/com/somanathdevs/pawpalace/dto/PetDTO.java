@@ -15,4 +15,12 @@ public class PetDTO implements Serializable {
     private SubSpecies subSpecies;
     private String breed;
     private Integer age;
+
+    public String getPetId() {
+        return petId;
+    }
+
+    public void setPetId(String petId) {
+        this.petId = petId;
+    }
 }

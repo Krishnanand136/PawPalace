@@ -4,8 +4,8 @@ import com.somanathdevs.pawpalace.constant.VaccinationStatus;
 import com.somanathdevs.pawpalace.dto.VaccinationRecordDTO;
 import com.somanathdevs.pawpalace.entity.VaccinationRecord;
 import com.somanathdevs.pawpalace.mapper.Mapper;
+import com.somanathdevs.pawpalace.repository.PetRepository;
 import com.somanathdevs.pawpalace.repository.VaccinationRecordRepository;
-import com.somanathdevs.pawpalace.service.PetService;
 import com.somanathdevs.pawpalace.service.VaccinationRecordService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,12 +18,12 @@ public class VaccinationRecordServiceImpl implements VaccinationRecordService {
     private final VaccinationRecordRepository repository;
     private final Mapper mapper;
 
-    private final PetService petService;
+    private final PetRepository petRepository;
 
-    public VaccinationRecordServiceImpl(VaccinationRecordRepository repository, Mapper mapper, PetService petService) {
+    public VaccinationRecordServiceImpl(VaccinationRecordRepository repository, Mapper mapper, PetRepository petRepository) {
         this.repository = repository;
         this.mapper = mapper;
-        this.petService = petService;
+        this.petRepository = petRepository;
     }
 
     @Override
@@ -33,6 +33,7 @@ public class VaccinationRecordServiceImpl implements VaccinationRecordService {
         validatePetExists(record.getPetId());
         record.setStatus(VaccinationStatus.SCHEDULED);
         VaccinationRecord saved = repository.save(record);
+        System.out.println("\n\nvaccinate pet service execution completed successfully for pet Id : " + saved.getPetId());
         return mapper.convertVaccinationRecordEntityToDTO(saved);
     }
 
@@ -42,11 +43,13 @@ public class VaccinationRecordServiceImpl implements VaccinationRecordService {
     public VaccinationRecordDTO fetchVaccinationRecordById(String vaccinationRecordId) {
         VaccinationRecord record = repository.findById(vaccinationRecordId)
                 .orElseThrow(() -> new NoSuchElementException("Vaccination Record not found with id: " + vaccinationRecordId));
+        System.out.println("\n\nFetch vaccination service execution completed successfully for vaccinationRecordId  : " + vaccinationRecordId);
         return mapper.convertVaccinationRecordEntityToDTO(record);
     }
 
     private void validatePetExists(String petId) {
-        petService.fetchPetByPetId(petId);
+        petRepository.findById(petId)
+                .orElseThrow(() -> new NoSuchElementException("Pet not found with id: " + petId));
     }
 
 }

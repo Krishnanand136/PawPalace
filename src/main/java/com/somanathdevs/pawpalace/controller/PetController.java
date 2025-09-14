@@ -1,6 +1,7 @@
 package com.somanathdevs.pawpalace.controller;
 
 import com.somanathdevs.pawpalace.dto.PetDTO;
+import com.somanathdevs.pawpalace.dto.PetVaccinationRegistrationDTO;
 import com.somanathdevs.pawpalace.service.PetService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,4 +30,12 @@ public class PetController {
         PetDTO pet = petService.fetchPetByPetId(petId);
         return ResponseEntity.ok(pet);
     }
+
+    @PostMapping("/register-and-vaccinate")
+    public ResponseEntity<PetVaccinationRegistrationDTO> registerAndVaccinate(
+            @RequestBody PetVaccinationRegistrationDTO requestDTO) {
+        PetVaccinationRegistrationDTO response = petService.registerAndVaccinatePet(requestDTO);
+        return ResponseEntity.status(201).body(response);
+    }
+
 }
