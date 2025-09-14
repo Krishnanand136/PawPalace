@@ -43,14 +43,14 @@
         }
       }
     },
-    "/pet/{id}": {
+    "/pet/petId/{petId}": {
       "get": {
         "summary": "Fetch pet by ID",
         "operationId": "GetPetById",
         "tags": ["Pet"],
         "parameters": [
           {
-            "name": "id",
+            "name": "petId",
             "in": "path",
             "required": true,
             "schema": {
@@ -67,6 +67,75 @@
               "application/json": {
                 "schema": {
                   "$ref": "./Pet.json#/components/schemas/Pet"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pet not found"
+          }
+        }
+      }
+    },
+    "/vaccination": {
+      "post": {
+        "summary": "Vaccinate a registered pet",
+        "operationId": "VaccinatePet",
+        "tags": ["Pet"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./VaccinationRecord.json#/components/schemas/VaccinationRecord"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Vaccination appointment created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./VaccinationRecord.json#/components/schemas/VaccinationRecord"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Pet not found"
+          }
+        }
+      }
+    },
+    "/vaccination/vaccinationRecordId/{vaccinationRecordId}": {
+      "get": {
+        "summary": "Fetch vaccination record by ID",
+        "operationId": "FetchVaccinationRecordById",
+        "tags": ["Pet"],
+        "parameters": [
+          {
+            "name": "vaccinationRecordId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Unique ID of the vaccinationRecord"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pet fetched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./VaccinationRecord.json#/components/schemas/VaccinationRecord"
                 }
               }
             }

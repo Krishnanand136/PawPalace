@@ -1,0 +1,60 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API Title",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.server.test/v1"
+    }
+  ],
+  "paths": {
+  },
+  "components": {
+    "schemas": {
+      "VaccinationRecord": {
+        "type": "object",
+        "properties": {
+          "vaccinationId": {
+            "type": "string",
+            "description": "Unique ID for this vaccination record",
+            "format" : "uuid",
+            "readOnly": true
+          },
+          "petId": {
+            "type": "string",
+            "format" : "uuid",
+            "description": "Unique identifier of the pet",
+            "readOnly": true
+          },
+          "doctorId": {
+            "type": "string",
+            "format" : "uuid",
+            "description": "Identifier of the veterinarian"
+          },
+          "vaccinationType": {
+            "type": "string",
+            "description": "Type of vaccination administered",
+            "enum": ["RABIES", "TICK", "FLEA"]
+          },
+          "appointmentDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Date of vaccination appointment"
+          },
+          "status": {
+            "type": "string",
+            "readOnly": true,
+            "enum": [
+              "SCHEDULED",
+              "COMPLETED",
+              "CANCELLED"
+            ],
+            "description": "Status of the vaccination appointment"
+          }
+        }
+      }
+    }
+  }
+}
