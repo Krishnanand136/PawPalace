@@ -13,7 +13,7 @@ public class Pet implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private String petId;
 
     private String name;
 
@@ -29,6 +29,5 @@ public class Pet implements Serializable {
     private String breed;
 
     private Integer age;
-
 
 }

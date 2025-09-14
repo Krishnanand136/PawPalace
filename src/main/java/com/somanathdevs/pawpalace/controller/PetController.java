@@ -24,9 +24,9 @@ public class PetController {
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PetDTO> fetchPetById(@PathVariable String id) {
-        PetDTO pet = petService.fetchPetById(id);
+    @GetMapping("/petId/{petId}")
+    public ResponseEntity<PetDTO> fetchPetById(@PathVariable String petId) {
+        PetDTO pet = petService.fetchPetByPetId(petId);
         return ResponseEntity.ok(pet);
     }
 }

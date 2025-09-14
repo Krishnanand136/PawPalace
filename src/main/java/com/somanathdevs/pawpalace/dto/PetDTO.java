@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Data
 public class PetDTO implements Serializable {
-    private String id;
+    private String petId;
     private String name;
     private PetType type;
     private Species species;

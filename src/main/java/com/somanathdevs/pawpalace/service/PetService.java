@@ -5,6 +5,6 @@ import com.somanathdevs.pawpalace.dto.PetDTO;
 public interface PetService {
 
     PetDTO createPet(PetDTO petDTO);
-    PetDTO fetchPetById(String id);
+    PetDTO fetchPetByPetId(String petId);
 
 }

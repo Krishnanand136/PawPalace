@@ -6,6 +6,8 @@ import com.somanathdevs.pawpalace.event.TransactionalEvent;
 import com.somanathdevs.pawpalace.mapper.Mapper;
 import com.somanathdevs.pawpalace.repository.PetRepository;
 import com.somanathdevs.pawpalace.service.PetService;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,9 +17,10 @@ import java.util.NoSuchElementException;
 @Service
 public class PetServiceImpl implements PetService {
 
+    @PersistenceContext
+    private EntityManager entityManager;
     private final PetRepository petRepository;
     private final Mapper mapper;
-
     private final ApplicationEventPublisher applicationEventPublisher;
 
     public PetServiceImpl(PetRepository petRepository, Mapper mapper, ApplicationEventPublisher applicationEventPublisher) {
@@ -39,7 +42,7 @@ public class PetServiceImpl implements PetService {
 
     @Transactional
     @Override
-    public PetDTO fetchPetById(String id) {
+    public PetDTO fetchPetByPetId(String id) {
         Pet pet = petRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Pet not found with id: " + id));
         return mapper.convertPetEntityToDTO(pet);
