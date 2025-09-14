@@ -1,12 +1,14 @@
 package com.somanathdevs.pawpalace.entity;
 
+import com.somanathdevs.pawpalace.constant.PetType;
 import com.somanathdevs.pawpalace.constant.Species;
 import com.somanathdevs.pawpalace.constant.SubSpecies;
 import jakarta.persistence.*;
-import com.somanathdevs.pawpalace.constant.PetType;
+import lombok.Data;
 import java.io.Serializable;
 
 @Entity
+@Data
 public class Pet implements Serializable {
 
     @Id

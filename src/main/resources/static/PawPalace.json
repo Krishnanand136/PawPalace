@@ -21,7 +21,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Pet"
+                "$ref": "./Pet.json#/components/schemas/Pet"
               }
             }
           }
@@ -32,7 +32,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Pet"
+                  "$ref": "./Pet.json#/components/schemas/Pet"
                 }
               }
             }
@@ -42,53 +42,37 @@
           }
         }
       }
-    }
-  },
-  "components": {
-    "schemas": {
-      "Pet": {
-        "type": "object",
-        "required": ["name", "type", "species"],
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64",
-            "readOnly": true,
-            "description": "Unique identifier for the pet"
+    },
+    "/pet/{id}": {
+      "get": {
+        "summary": "Fetch pet by ID",
+        "operationId": "GetPetById",
+        "tags": ["Pet"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Unique ID of the pet"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pet fetched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./Pet.json#/components/schemas/Pet"
+                }
+              }
+            }
           },
-          "name": {
-            "type": "string",
-            "description": "Pet's name",
-            "example": "Buddy"
-          },
-          "type": {
-            "type": "string",
-            "description": "Classification of pet by environment",
-            "enum": ["AQUATIC", "TERRESTRIAL", "AERIAL"],
-            "example": "TERRESTRIAL"
-          },
-          "species": {
-            "type": "string",
-            "description": "Species of the pet",
-            "enum": ["DOG", "CAT", "FISH"],
-            "example": "DOG"
-          },
-          "subSpecies": {
-            "type": "string",
-            "description": "Subspecies classification of the pet",
-            "enum": ["DOG", "CAT", "FISH"],
-            "example": "CAT"
-          },
-          "breed": {
-            "type": "string",
-            "description": "Breed of the pet",
-            "example": "Golden Retriever"
-          },
-          "age": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Age of the pet in years",
-            "example": 3
+          "404": {
+            "description": "Pet not found"
           }
         }
       }

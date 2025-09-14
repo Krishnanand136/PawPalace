@@ -1,0 +1,64 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API Title",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.server.test/v1"
+    }
+  ],
+  "paths": {
+  },
+  "components": {
+    "schemas": {
+      "Pet": {
+        "type": "object",
+        "required": ["name", "type", "species"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true,
+            "description": "Unique identifier for the pet"
+          },
+          "name": {
+            "type": "string",
+            "description": "Pet's name",
+            "example": "Buddy"
+          },
+          "type": {
+            "type": "string",
+            "description": "Classification of pet by environment",
+            "enum": ["AQUATIC", "TERRESTRIAL", "AERIAL"],
+            "example": "TERRESTRIAL"
+          },
+          "species": {
+            "type": "string",
+            "description": "Species of the pet",
+            "enum": ["DOG", "CAT", "FISH"],
+            "example": "DOG"
+          },
+          "subSpecies": {
+            "type": "string",
+            "description": "Subspecies classification of the pet",
+            "enum": ["DOG", "CAT", "FISH"],
+            "example": "CAT"
+          },
+          "breed": {
+            "type": "string",
+            "description": "Breed of the pet",
+            "example": "Golden Retriever"
+          },
+          "age": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Age of the pet in years",
+            "example": 3
+          }
+        }
+      }
+    }
+  }
+}
