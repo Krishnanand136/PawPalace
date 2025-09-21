@@ -21,7 +21,7 @@
             "type": "string",
             "format": "uuid",
             "readOnly": true,
-            "description": "Unique identifier for the pet"
+            "description": "Unique identifier for the pet",
           },
           "name": {
             "type": "string",
@@ -40,20 +40,14 @@
             "enum": ["DOG", "CAT", "FISH"],
             "example": "DOG"
           },
-          "subSpecies": {
-            "type": "string",
-            "description": "Subspecies classification of the pet",
-            "enum": ["DOG", "CAT", "FISH"],
-            "example": "CAT"
-          },
           "breed": {
             "type": "string",
             "description": "Breed of the pet",
             "example": "Golden Retriever"
           },
-          "age": {
-            "type": "integer",
-            "format": "int32",
+          "dob": {
+            "type": "string",
+            "format": "date",
             "description": "Age of the pet in years",
             "example": 3
           }

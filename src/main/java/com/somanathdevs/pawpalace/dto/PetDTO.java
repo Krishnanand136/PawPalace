@@ -2,9 +2,10 @@ package com.somanathdevs.pawpalace.dto;
 
 import com.somanathdevs.pawpalace.constant.PetType;
 import com.somanathdevs.pawpalace.constant.Species;
-import com.somanathdevs.pawpalace.constant.SubSpecies;
 import lombok.Data;
+
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Data
 public class PetDTO implements Serializable {
@@ -12,9 +13,8 @@ public class PetDTO implements Serializable {
     private String name;
     private PetType type;
     private Species species;
-    private SubSpecies subSpecies;
     private String breed;
-    private Integer age;
+    private LocalDate dob;
 
     public String getPetId() {
         return petId;
