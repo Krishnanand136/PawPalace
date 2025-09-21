@@ -40,4 +40,16 @@ public class Pet implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Pet{" +
+                "petId='" + petId + '\'' +
+                ", name='" + name + '\'' +
+                ", type=" + type +
+                ", species=" + species +
+                ", breed='" + breed + '\'' +
+                ", dob=" + dob +
+                '}';
+    }
 }
