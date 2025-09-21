@@ -8,12 +8,19 @@ import com.somanathdevs.pawpalace.mapper.Mapper;
 import com.somanathdevs.pawpalace.repository.PetRepository;
 import com.somanathdevs.pawpalace.service.PetService;
 import com.somanathdevs.pawpalace.service.VaccinationRecordService;
+import com.somanathdevs.pawpalace.utils.StringUtils;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.NoSuchElementException;
 
 @Service
 public class PetServiceImpl implements PetService {
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     private final PetRepository petRepository;
     private final Mapper mapper;
@@ -28,13 +35,22 @@ public class PetServiceImpl implements PetService {
         this.vaccinationRecordService = vaccinationRecordService;
     }
 
+
     @Override
     @Transactional
     public PetDTO createPet(PetDTO petDTO) {
         Pet pet = mapper.convertPetDTOToEntity(petDTO);
-        Pet saved = petRepository.save(pet);
-        System.out.println("\n\nCreate pet service execution completed successfully for pet Id : " + saved);
-        return mapper.convertPetEntityToDTO(saved);
+        Pet savedPet = petRepository.save(pet);
+        entityManager.flush();
+        entityManager.detach(savedPet);
+        String maskedName = StringUtils.maskFromEnd(
+                savedPet.getName(),
+                savedPet.getName().length()/2,
+                '*'
+        );
+        savedPet.setName(maskedName);
+        System.out.println("Create pet service execution completed for: " + savedPet);
+        return mapper.convertPetEntityToDTO(savedPet);
     }
 
     @Transactional
