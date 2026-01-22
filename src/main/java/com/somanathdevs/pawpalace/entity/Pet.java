@@ -2,16 +2,19 @@ package com.somanathdevs.pawpalace.entity;
 
 import com.somanathdevs.pawpalace.constant.PetType;
 import com.somanathdevs.pawpalace.constant.Species;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -33,9 +36,8 @@ public class Pet implements Serializable {
 
     private LocalDate dob;
 
-    public String getPetId() {
-        return petId;
-    }
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Trick> tricks;
 
     public void setName(String name) {
         this.name = name;
@@ -43,6 +45,10 @@ public class Pet implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public String getPetId() {
+        return petId;
     }
 
     @Override

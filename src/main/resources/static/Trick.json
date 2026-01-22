@@ -1,0 +1,35 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API Title",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.server.test/v1"
+    }
+  ],
+  "paths": {
+  },
+  "components": {
+    "schemas": {
+      "Trick": {
+        "type": "object",
+        "required": ["trickName", "command"],
+        "properties": {
+          "trickName": {
+            "type": "string",
+            "readOnly": true,
+            "description": "name of the trick",
+            "example": "Sit"
+          },
+          "command": {
+            "type": "string",
+            "description": "Command to be used to make the pet perform the trick",
+            "example": "Buddy Sit"
+          }
+        }
+      }
+    }
+  }
+}

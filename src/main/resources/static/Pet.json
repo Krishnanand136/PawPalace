@@ -21,7 +21,7 @@
             "type": "string",
             "format": "uuid",
             "readOnly": true,
-            "description": "Unique identifier for the pet",
+            "description": "Unique identifier for the pet"
           },
           "name": {
             "type": "string",
@@ -50,6 +50,12 @@
             "format": "date",
             "description": "Age of the pet in years",
             "example": 3
+          },
+          "tricks" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Trick.json#/components/schemas/Trick"
+            }
           }
         }
       }

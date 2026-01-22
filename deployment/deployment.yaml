@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paw-palace
+spec:
+  replicas: 2                       # Number of Pods
+  selector:
+    matchLabels:
+      app: paw-palace
+  template:
+    metadata:
+      labels:
+        app: paw-palace
+    spec:
+      containers:
+        - name: paw-palace
+          image: paw-palace:1.0            # Replace with your Docker Desktop image name
+          ports:
+            - containerPort: 1160          # Port your Java app listens on

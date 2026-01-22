@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: paw-palace-service
+spec:
+  selector:
+    app: paw-palace          # Must match the label of your Pods
+  ports:
+    - protocol: TCP
+      port: 1160        # Port exposed inside Kubernetes
+      targetPort: 1160  # Port the container listens on
+      nodePort: 30080
+  type: NodePort        # Exposes service on host machine for local access

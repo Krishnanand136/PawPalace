@@ -6,6 +6,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 public class PetDTO implements Serializable {
@@ -15,6 +16,7 @@ public class PetDTO implements Serializable {
     private Species species;
     private String breed;
     private LocalDate dob;
+    private List<TrickDTO> tricks;
 
     public String getPetId() {
         return petId;
